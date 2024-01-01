@@ -1,28 +1,37 @@
-function getToday() {
+async function fetchToday() {
     
     dt = new Date().toLocaleDateString("ja-JP", {year: "numeric",month: "2-digit",day: "2-digit"})
     wk = new Date().getDay()
     week = ["日","月","火","水","木","金","土"][wk]
+    datestr = `${dt} (${week})`
 
-    result = `${dt} (${week})`
-    return result
-}
-
-async function fetchHoli() {
-    dt =new Date().toLocaleDateString("ja-JP", {year: "numeric",month: "2-digit",day: "2-digit"}).replaceAll('/', '')
-    //result = await fetch(`https://tokikk.github.io/data/${dt}`)
-    response = (await fetch(`https://tokikk.github.io/19550101`))
+    response = (await fetch(`https://tokikk.github.io/${dt.replaceAll('/', '')}`))
     result = ""
-    if (!response.ok) {
-        result = "祝日じゃない"
-    } else {
+    if (response.ok) {
         result = response.text()
-        if (result == "") {
-            result = ""
-        }       
+        if (result === "") {
+            if (wk === 0) {
+                result = "日曜日"
+            } else if (wl === 6) {
+                result = "土曜日" 
+            } else {
+                result = "平日"
+            }
+        }
+    } else {
+        if (wk === 0) {
+            result = "日曜日"
+        } else if (wl === 6) {
+            result = "土曜日" 
+        } else {
+            result = "平日"
+        }
     }
-    return result
-};
+    return {
+        date: datestr,
+        name: result
+    }
+}
 
 async function fetchNextHoli() {
     today =new Date().toLocaleDateString("ja-JP", {year: "numeric",month: "2-digit",day: "2-digit"}).replaceAll('/', '')
@@ -32,24 +41,21 @@ async function fetchNextHoli() {
         result = await response.text()
         console.log(result)
         holidays = result.split("\n")
-        nextholidays = holidays.filter( day => {
+        nextholiday = holidays.find( day => {
             return day.slice(0,8) > today
         });
-        return nextholidays.slice(0, 1)
-    }
-}
+        holistr = nextholiday.split(",")[0]
 
-async function fetchHoliList() {
-    today =new Date().toLocaleDateString("ja-JP", {year: "numeric",month: "2-digit",day: "2-digit"}).replaceAll('/', '')
-    response = (await fetch(`https://tokikk.github.io/holidaylist`))
-    result = ""
-    if (response.ok) {
-        result = await response.text()
-        console.log(result)
-        holidays = result.split("\n")
-        nextholidays = holidays.filter( day => {
-            return day.slice(0,8) > today
-        });
-        return nextholidays.slice(0, 5)
+        year = holistr.slice(0, 4); 
+	    month = holistr.slice(4, 6); 
+	    day = holistr.slice(6, 8); 
+        dt = new Date(year, month, day)
+        wk = dt.getDay()
+        week = ["日","月","火","水","木","金","土"][wk]
+
+        return {
+            date : `${dt.toLocaleDateString("ja-JP", {year: "numeric",month: "2-digit",day: "2-digit"})} (${week})`,
+            name : nextholiday.split(",")[1]
+        }
     }
 }
