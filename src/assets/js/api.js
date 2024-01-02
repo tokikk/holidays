@@ -49,7 +49,8 @@ async function fetchNextHoli() {
         year = holistr.slice(0, 4); 
 	    month = holistr.slice(4, 6); 
 	    day = holistr.slice(6, 8); 
-        dt = new Date(year, month, day)
+        dt = new Date(year, month-1, day)
+        console.log(month)
         wk = dt.getDay()
         week = ["日","月","火","水","木","金","土"][wk]
 
