@@ -12,7 +12,7 @@ async function fetchToday() {
         if (result === "") {
             if (wk === 0) {
                 result = "日曜日"
-            } else if (wl === 6) {
+            } else if (wk === 6) {
                 result = "土曜日" 
             } else {
                 result = "平日"
@@ -21,7 +21,7 @@ async function fetchToday() {
     } else {
         if (wk === 0) {
             result = "日曜日"
-        } else if (wl === 6) {
+        } else if (wk === 6) {
             result = "土曜日" 
         } else {
             result = "平日"
@@ -39,7 +39,6 @@ async function fetchNextHoli() {
     result = ""
     if (response.ok) {
         result = await response.text()
-        console.log(result)
         holidays = result.split("\n")
         nextholiday = holidays.find( day => {
             return day.slice(0,8) > today
@@ -50,7 +49,6 @@ async function fetchNextHoli() {
 	    month = holistr.slice(4, 6); 
 	    day = holistr.slice(6, 8); 
         dt = new Date(year, month-1, day)
-        console.log(month)
         wk = dt.getDay()
         week = ["日","月","火","水","木","金","土"][wk]
 
