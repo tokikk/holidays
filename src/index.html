@@ -9,22 +9,17 @@
   <script src="/src/assets/js/api.js"></script>
 </head>
 
-<body class="flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen min-w-min">
   <nav class="bg-gray-200 dark:bg-gray-900">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
       <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
         <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
         <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
       </a>
-      <button data-collapse-toggle="navbar-default" type="button"
-        class="inline-flex items-cenhttps://game.granbluefantasy.jp/#mypageter p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-        aria-controls="navbar-default" aria-expanded="false">
-        <span class="sr-only">Open main menu</span>
-        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M1 1h15M1 7h15M1 13h15" />
-        </svg>
-      </button>
+      <div class="flex">
+        <a class="mx-3" href="https://www.switch-on-my.net/">Blog</a>
+        <a class="ml-3" href="https://www.switch-on-my.net/">Twitter</a>
+      </div>     
     </div>
   </nav>
   <div class="relative flex-grow items-center w-full px-5 py-24 mx-auto md:px-12 lg:px-16 max-w-7xl">
@@ -49,8 +44,8 @@
       <ul class="pl-5 list-disc text-sm text-gray-500">
         <li>
           本サイトは内閣府が公開している祝日データを利用しています。<br>
-          　<a class="underline" href="https://data.e-gov.go.jp/data/ja/dataset/cao_20190522_0002">
-            e-Gov データポータル 「「国民の祝日」について」
+          <a class="underline" href="https://data.e-gov.go.jp/data/ja/dataset/cao_20190522_0002">
+            e-Gov データポータル 「国民の祝日」について
           </a>
         </li>
         <li>本ページの掲載内容に関して、情報の正確性を保証するものではありません。</li>
@@ -61,7 +56,7 @@
   </div>
   <footer class="footer items-center p-4 bg-gray-200 text-neutral-content">
     <aside class="flex justify-between">
-      <p class="text-gray-500 ">祝日データ更新日：</p>
+      <p class="text-gray-500"></p>
       <p class="text-gray-500">Copyright © 2023 - All right reserved</p>
     </aside>
   </footer>
